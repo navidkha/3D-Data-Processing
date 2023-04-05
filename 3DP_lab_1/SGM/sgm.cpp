@@ -170,14 +170,16 @@ namespace sgm {
 
     for(int d=0; d < disparity_range_; d++)
     {
-
-      big_penalty_cost = path_cost_[cur_path][cur_y - direction_y][cur_x - direction_x][0];
+  
+      big_penalty_cost = path_cost_[cur_path][cur_y][cur_x][0];//something wrong here
       small_penalty_cost = big_penalty_cost;
+            
       // if the processed pixel is the first:
       if(cur_y == pw_.north || cur_y == pw_.south || cur_x == pw_.east || cur_x == pw_.west)
       {
+ 
         //Please fill me!
-        path_cost_[cur_path][cur_y][cur_x][d] = cost_[cur_y][cur_x][d];
+        path_cost_[cur_path][cur_y][cur_x][d] = cost_[cur_y][cur_x][d];        
       }
 
       else
@@ -190,7 +192,7 @@ namespace sgm {
 
         else if(d == disparity_range_-1)
             small_penalty_cost = path_cost_[cur_path][cur_y - direction_y][cur_x - direction_x][d-1] + p1_;
-      
+             
         else
             small_penalty_cost = min(path_cost_[cur_path][cur_y - direction_y][cur_x - direction_x][d-1] + p1_,
                       path_cost_[cur_path][cur_y - direction_y][cur_x - direction_x][d+1] + p1_);
@@ -221,7 +223,6 @@ namespace sgm {
 
       int dir_x = paths_[cur_path].direction_x;
       int dir_y = paths_[cur_path].direction_y;
-
       int start_x, start_y, end_x, end_y, step_x, step_y;
 
       //TO DO: initialize the variables start_x, start_y, end_x, end_y, step_x, step_y with the right values
@@ -331,4 +332,3 @@ namespace sgm {
   }
 
 }
-

@@ -6,5 +6,3 @@ EXECUTABLE=sgm
 
 all:
 	g++ $(CXXFLAGS)  $(SOURCES) -o $(EXECUTABLE) $(INC)
-
-
