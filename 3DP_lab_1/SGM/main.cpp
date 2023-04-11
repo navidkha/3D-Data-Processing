@@ -28,13 +28,17 @@ int main(int argc, char** argv) {
 
     unsigned int disparityRange = atoi(argv[5]);
 
-
+    time_t start, end; //measure running time
+    time(&start);
     sgm::SGM sgm(disparityRange);
     sgm.set(firstImage, secondImage);
     sgm.compute_disparity();
     sgm.save_disparity(outputFileName);
-
+    time(&end);
+    double time_taken = double(end - start);
     std::cerr<<"Right Image MSE error: "<<sgm.compute_mse(gt)<<std::endl;
+    std::cerr<<"Running time: "<<time_taken<<" seconds"<<std::endl;
+
 
     return 0;
 }
